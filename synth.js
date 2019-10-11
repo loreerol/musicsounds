@@ -16,6 +16,13 @@ var synth = new Tone.PolySynth(6, Tone.Synth, {
   }
 }).toMaster();
 
+var loop = new Tone.Loop(function(time){
+	//triggered every eighth note.
+	let note = sample(notes);
+  synth.triggerAttackRelease(note, "8n", time);
+}, '32n').start(0);
+Tone.Transport.start();
+
 let ctx = new AudioContext();
 
 // create a keyboard
